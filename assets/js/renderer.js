@@ -789,14 +789,6 @@ el.autoLoadList.addEventListener("click", (e) => {
   e.preventDefault();
   // event delegation
   if (e.target.classList.contains("deleteFile")) {
-    if (!deleteMode) {
-      warningEmptyAudio.play();
-      display.showAlert(
-        "You have to select Edit and Delete mode in menu to make a deletion!",
-        "error"
-      );
-      return;
-    }
     if (!e.ctrlKey) {
       warningEmptyAudio.play();
       display.showAlert(
@@ -806,19 +798,17 @@ el.autoLoadList.addEventListener("click", (e) => {
       return;
     }
     if (e.ctrlKey) {
-      if (deleteMode) {
-        // this gets the data I embedded into the html
-        let dataIndex = e.target.parentElement.parentElement.dataset.index;
-        let deleteIndex = parseInt(dataIndex);
-        if (isNaN(deleteIndex)) {
-          return;
-        }
-        // delete path
-        settingsArrayContainer.splice(deleteIndex, 1);
-        warningSelectAudio.play();
-        // update Form
-        display.showAutoLoadList(settingsArrayContainer);
+      // this gets the data I embedded into the html
+      let dataIndex = e.target.parentElement.parentElement.dataset.index;
+      let deleteIndex = parseInt(dataIndex);
+      if (isNaN(deleteIndex)) {
+        return;
       }
+
+      settingsArrayContainer.splice(deleteIndex, 1);
+      warningSelectAudio.play();
+      // update Form
+      display.showAutoLoadList(settingsArrayContainer);
     }
   }
 });
