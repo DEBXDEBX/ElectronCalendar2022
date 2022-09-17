@@ -1,0 +1,6 @@
+body {
+  background-color: black;
+}
+.active {
+  box-shadow: 3px 2px 4px white;
+}
