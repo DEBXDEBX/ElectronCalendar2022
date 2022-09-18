@@ -913,7 +913,7 @@ window.api.handleOpenFile((event, data) => {
   arrayOfYearObjs.push(newYear);
   sortArrayByName(arrayOfYearObjs);
   addAudio.play();
-  saveYear(data);
+  // saveYear(data);
   display.paintYearTabs(mapOutKey("name", arrayOfYearObjs));
   return;
 });
