@@ -1,21 +1,12 @@
 "use strict";
 
-//Select audio files
-const addAudio = document.querySelector("#addAudio");
-const addImageAudio = document.querySelector("#addImageAudio");
-const deleteAudio = document.querySelector("#deleteAudio");
-const warningEmptyAudio = document.querySelector("#warningEmptyAudio");
-const warningSelectAudio = document.querySelector("#warningSelectAudio");
-const warningNameTakenAudio = document.querySelector("#warningNameTakenAudio");
-const tabAudio = document.querySelector("#tabAudio");
-const btnAudio = document.querySelector("#btnAudio");
-const cancelAudio = document.querySelector("#cancelAudio");
-const clickAudio = document.querySelector("#clickAudio");
 // Global variable's
 // This is the Main array that holds all the year objects
 const arrayOfYearObjs = [];
 // create elements object
 const el = new Elements();
+// create audio object
+const sound = new Audio();
 // create display object
 const display = new Display(el, $);
 //Theme current
@@ -104,7 +95,7 @@ function pushFileSettingsContainer(filePath) {
   }
 
   if (isTaken) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     display.showAlert("That file is already loaded!", "error");
     return;
   }
@@ -267,7 +258,7 @@ function applySettings(settings) {
 
 function handleFilePath(imagePath) {
   if (!imagePath) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter a path in the name area!", "error");
     return;
   }
@@ -281,7 +272,7 @@ function handleFilePath(imagePath) {
     ].imagePath = imagePath;
     // write to file
     saveYear(arrayOfYearObjs[yearIndex]);
-    addImageAudio.play();
+    sound.addImageAudio.play();
     display.showAlert("A new image was added to the note!", "success");
   }
 } // End handleFilePath(imagePath)
@@ -309,7 +300,7 @@ const saveYear = (year) => {
 }; //End saveYear
 
 window.api.handleFontSizeChange((event, fontSize) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   switch (fontSize) {
     case "x-small":
       el.root.style.fontSize = "10px";
@@ -335,7 +326,7 @@ window.api.handleShowAlert((event, { message, msgType }) => {
   display.showAlert(message, msgType);
 });
 window.api.handleShowSettingsForm((event, noData) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   loadUpSettingsForm();
   display.showSettingsForm();
 });
@@ -366,7 +357,7 @@ el.yearList.addEventListener("click", (e) => {
     }
 
     yearIndex = index;
-    tabAudio.play();
+    sound.tabAudio.play();
     // get the array of months and send it to display
     renderMonthTabs();
     // New code below display all the notes for the year
@@ -398,7 +389,7 @@ el.monthList.addEventListener("click", (e) => {
       return;
     }
     monthIndex = index;
-    tabAudio.play();
+    sound.tabAudio.play();
 
     renderNotes();
     return;
@@ -449,7 +440,7 @@ el.noteList.addEventListener("click", (e) => {
       arrayOfYearObjs[yearIndex].arrayOfMonthObjects[monthIndex].arrayOfNotes;
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // write to file
     // arrayOfYearObjs[yearIndex].writeYearToHardDisk(fs, display);
     saveYear(arrayOfYearObjs[yearIndex]);
@@ -475,7 +466,7 @@ el.noteList.addEventListener("click", (e) => {
     let moveTo = index + 1;
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // write to file
     // arrayOfYearObjs[yearIndex].writeYearToHardDisk(fs, display);
     saveYear(arrayOfYearObjs[yearIndex]);
@@ -493,7 +484,7 @@ el.noteList.addEventListener("click", (e) => {
     }
     // check if control was down, if so delete note
     if (!deleteMode) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to select Edit and Delete mode in menu to make a deletion!",
         "error"
@@ -501,7 +492,7 @@ el.noteList.addEventListener("click", (e) => {
       return;
     }
     if (!e.ctrlKey) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion!",
         "error"
@@ -517,7 +508,7 @@ el.noteList.addEventListener("click", (e) => {
         // write to file
         // arrayOfYearObjs[yearIndex].writeYearToHardDisk(fs, display);
         saveYear(arrayOfYearObjs[yearIndex]);
-        deleteAudio.play();
+        sound.deleteAudio.play();
         display.showAlert("Note deleted!", "success");
         renderNotes();
       }
@@ -570,7 +561,7 @@ el.noteList.addEventListener("click", (e) => {
       saveYear(arrayOfYearObjs[yearIndex]);
       // reasign current note
       nI = -243;
-      deleteAudio.play();
+      sound.deleteAudio.play();
       display.showAlert("Removed the image from note!", "success");
       // send note array to display
       renderNotes();
@@ -596,14 +587,14 @@ el.noteList.addEventListener("click", (e) => {
       ];
 
     el.noteModalTextArea.value = note.text;
-    clickAudio.play();
+    sound.clickAudio.play();
     return;
   }
 }); // End el.noteList.addEventListener
 
 // when You click the + in the Note Heading
 el.addNoteIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   // clear the text Area
   el.noteTextAreaInput.value = "";
   display.showNoteForm();
@@ -622,7 +613,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
 
   // check if text is empty
   if (!noteText) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter note in the text area!", "error");
     return;
   }
@@ -639,7 +630,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
   saveYear(arrayOfYearObjs[yearIndex]);
   // clear the text Area
   el.noteTextAreaInput.value = "";
-  addAudio.play();
+  sound.addAudio.play();
   display.showAlert("A new note was added!", "success", 900);
 
   renderNotes();
@@ -647,7 +638,7 @@ el.addNoteSubmitBtn.addEventListener("click", (e) => {
 
 // when You click the cancel btn in the note form
 el.noteCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   el.noteForm.reset();
   display.displayNone(el.noteForm);
   window.setTimeout(function () {
@@ -657,7 +648,7 @@ el.noteCancelBtn.addEventListener("click", (e) => {
 
 // when You click the clear btn in the note form
 el.noteClearTextAreaBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   // clear the text Area
   el.noteTextAreaInput.value = "";
   window.setTimeout(function () {
@@ -667,7 +658,7 @@ el.noteClearTextAreaBtn.addEventListener("click", (e) => {
 
 // when you click on the add Date btn in the note form
 el.noteAddDateBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   let date = new Date();
   el.noteTextAreaInput.value = date.toDateString();
   window.setTimeout(function () {
@@ -681,13 +672,13 @@ el.noteAddDateBtn.addEventListener("click", (e) => {
 // when you click on the save edit btn in the modal
 el.saveEditedNoteBtn.addEventListener("click", (e) => {
   if (yearIndex < 0 || isNaN(yearIndex)) {
-    warningNameTakenAudio.play();
+    sound.warningNameTakenAudio.play();
     return;
   }
   let newNoteText = el.noteModalTextArea.value.trim();
   // check if text is empty
   if (!newNoteText) {
-    warningEmptyAudio.play();
+    sound.warningEmptyAudio.play();
     display.showAlert("Please enter text in the text area!", "error");
     return;
   }
@@ -699,7 +690,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
   if (note) {
     note.text = newNoteText;
   }
-  addAudio.play();
+  sound.addAudio.play();
   // save year object
   display.showAlert("Note updated!", "success", 3000);
   // arrayOfYearObjs[yearIndex].writeYearToHardDisk(fs, display);
@@ -708,7 +699,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
 });
 // when you click on the close Btn on the edit note form
 el.editNoteCloseBtn.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
 });
 // *************************************************************
 //  End Edit Note Code
@@ -741,7 +732,7 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
   settingsObj.autoLoad = el.autoLoadCheckBox.checked;
   // save the object
   settingsStorage.saveSettings(settingsObj);
-  addAudio.play();
+  sound.addAudio.play();
   // reset form
   el.settingsForm.reset();
   if (settingsObj.autoLoad) {
@@ -763,7 +754,7 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
 
 // when You click on settings form cancel Btn
 el.settingsCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // hide form
   display.displayNone(el.settingsForm);
   renderYearTabs();
@@ -772,7 +763,7 @@ el.settingsCancelBtn.addEventListener("click", (e) => {
 
 // when You click on settings form factory reset btn
 el.factoryResetBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   let settingsStorage = new SettingsStorage();
   settingsStorage.clearFileFromLocalStorage();
   loadUpSettingsForm();
@@ -790,7 +781,7 @@ el.autoLoadList.addEventListener("click", (e) => {
   // event delegation
   if (e.target.classList.contains("deleteFile")) {
     if (!e.ctrlKey) {
-      warningEmptyAudio.play();
+      sound.warningEmptyAudio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion!",
         "error"
@@ -806,7 +797,7 @@ el.autoLoadList.addEventListener("click", (e) => {
       }
 
       settingsArrayContainer.splice(deleteIndex, 1);
-      warningSelectAudio.play();
+      sound.warningSelectAudio.play();
       // update Form
       display.showAutoLoadList(settingsArrayContainer);
     }
@@ -818,14 +809,14 @@ el.autoLoadList.addEventListener("click", (e) => {
 // window api's #################################################################
 window.api.handleNewYear((event, { name, path }) => {
   if (!name || !path) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Error creating a year", "error");
     return;
   }
 
   if (isNaN(name)) {
     display.showAlert("You have to enter number's to create a year", "error");
-    wrongAudio.play();
+    sound.wrongAudio.play();
     return;
   }
 
@@ -884,7 +875,7 @@ window.api.handleNewYear((event, { name, path }) => {
   // push the year obj into the array of year objects
   arrayOfYearObjs.push(newYear);
   sortArrayByName(arrayOfYearObjs);
-  addAudio.play();
+  sound.addAudio.play();
   // write the year object to disk
   // window api's #################################################################
   saveYear(newYear);
@@ -912,7 +903,7 @@ window.api.handleOpenFile((event, data) => {
   // push the year obj into the array of year Objects
   arrayOfYearObjs.push(newYear);
   sortArrayByName(arrayOfYearObjs);
-  addAudio.play();
+  sound.addAudio.play();
   // saveYear(data);
   display.paintYearTabs(mapOutKey("name", arrayOfYearObjs));
   return;
@@ -932,6 +923,6 @@ window.api.handleAuotLoadPaths((event, fileNames) => {
       settingsArrayContainer.push(filePath);
     }
   }
-  addImageAudio.play();
+  sound.addImageAudio.play();
   display.showAutoLoadList(settingsArrayContainer);
 });
