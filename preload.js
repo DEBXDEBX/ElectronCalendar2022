@@ -27,6 +27,9 @@ contextBridge.exposeInMainWorld("api", {
   showImageDialog: () => {
     ipcRenderer.send("image:getFiles");
   },
+  handleSetTheme: (callback) => {
+    ipcRenderer.on("Theme:set", callback);
+  },
   handleSetDeleteMode: (callback) => {
     ipcRenderer.on("deleteMode:set", callback);
   },

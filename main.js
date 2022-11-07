@@ -178,6 +178,20 @@ const menuTemplate = [
         },
       },
       {
+        label: "Light Theme",
+        accelerator: process.platform === "darwin" ? "Command+L" : "Ctrl+6",
+        click() {
+          setThemeLight();
+        },
+      },
+      {
+        label: "Dark Theme",
+        accelerator: process.platform === "darwin" ? "Command+D" : "Ctrl+7",
+        click() {
+          setThemeDark();
+        },
+      },
+      {
         label: "Start Up Settings Form",
         accelerator: process.platform === "darwin" ? "Command+L" : "Ctrl+S",
         click() {
@@ -399,3 +413,13 @@ function setDeleteModeTrue() {
   let deleteMode = true;
   mainWindow.webContents.send("deleteMode:set", deleteMode);
 } // End setDeleteModeTrue()
+
+function setThemeLight() {
+  let myThemeString = "Light";
+  mainWindow.webContents.send("Theme:set", myThemeString);
+} // End setThemeLight()
+
+function setThemeDark() {
+  let myThemeString = "Dark";
+  mainWindow.webContents.send("Theme:set", myThemeString);
+} // End setThemeDark()

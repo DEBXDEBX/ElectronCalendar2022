@@ -981,3 +981,38 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
     renderNotes();
   }
 });
+
+window.api.handleSetTheme((event, theme) => {
+  $("#myModal").modal("hide");
+  // set te current theme
+  currentTheme = theme;
+  // check if delete mode is on, if so return
+  if (deleteMode) {
+    switch (currentTheme) {
+      case "Dark":
+        el.blankCssLink.href = "assets/css/dark.css";
+        break;
+      case "Light":
+        el.blankCssLink.href = "assets/css/light.css";
+        break;
+      default:
+        console.log("No Match");
+    }
+    return;
+  }
+  switch (currentTheme) {
+    case "Dark":
+      el.blankCssLink.href = "assets/css/dark.css";
+      el.body.style.backgroundColor = "black";
+      deleteMode = false;
+      break;
+    case "Light":
+      el.blankCssLink.href = "assets/css/light.css";
+      el.body.style.backgroundColor = "white";
+      deleteMode = false;
+      break;
+    default:
+      console.log("No valid option!");
+    // code block
+  }
+});
