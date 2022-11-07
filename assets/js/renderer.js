@@ -771,7 +771,8 @@ el.factoryResetBtn.addEventListener("click", (e) => {
 
 // When You click on settings form add path to autoload Btn
 el.settingsAddPathBtn.addEventListener("click", async (e) => {
-  // addImageAudio.play();
+  sound.btnAudio.play();
+  // doesn't sound the 1st time. ?
   window.api.showOpenDialog();
 });
 
