@@ -16,7 +16,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.7em;
   transition: background-color 1.7s ease;
-  /* height: 100vh; */
+  height: 100vh;
 }
 a {
   text-decoration: none;
@@ -51,13 +51,13 @@ nav ul li {
   border-radius: 10px 10px 0px 0px;
   font-weight: 700;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
-  transition: box-shadow 0.7s 1.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
-  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+  transition: all 0.3s ease-in;
+  transition: transform 0.8s cubic-bezier(0.45, 1.87, 0.62, 1.6);
 }
 
 nav ul li:hover {
   color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 /* CODE FOR MESSAGES  */
 .success,
@@ -88,6 +88,7 @@ nav ul li:hover {
 
 .active {
   color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 3px 2px 4px white;
   transform: scale(1.1);
 }
@@ -102,9 +103,9 @@ h6 > span {
   color: var(--primary-color);
 }
 
-.addSpace {
+/* .addSpace {
   height: 1750px;
-}
+} */
 
 #noteForm {
   max-width: 97%;
@@ -159,18 +160,6 @@ input[type="checkbox"]:hover {
 #autoLoadList {
   margin-left: 40px;
 }
-/* 
-.setFlex {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  background-color: #aea9ad;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 22px;
-  box-shadow: 5px 4px 9px black;
-} */
 
 .radio {
   display: flex;

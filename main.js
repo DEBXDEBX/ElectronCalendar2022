@@ -120,7 +120,25 @@ const menuTemplate = [
       },
     ],
   },
-
+  {
+    label: "Mode",
+    submenu: [
+      {
+        label: "Read and Write",
+        accelerator: process.platform === "darwin" ? "Command+L" : "Ctrl+L",
+        click() {
+          setDeleteModeFalse();
+        },
+      },
+      {
+        label: "Edit and Delete",
+        accelerator: process.platform === "darwin" ? "Command+D" : "Ctrl+D",
+        click() {
+          setDeleteModeTrue();
+        },
+      },
+    ],
+  },
   {
     label: "Settings",
     submenu: [
@@ -371,3 +389,13 @@ function loadAverageNumbers() {
     averageWindow = null;
   });
 }
+
+function setDeleteModeFalse() {
+  let deleteMode = false;
+  mainWindow.webContents.send("deleteMode:set", deleteMode);
+} // End setDeleteModeFalse()
+
+function setDeleteModeTrue() {
+  let deleteMode = true;
+  mainWindow.webContents.send("deleteMode:set", deleteMode);
+} // End setDeleteModeTrue()

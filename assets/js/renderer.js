@@ -927,3 +927,57 @@ window.api.handleAuotLoadPaths((event, fileNames) => {
   sound.addImageAudio.play();
   display.showAutoLoadList(settingsArrayContainer);
 });
+
+// #############################################
+// ###########################################
+
+window.api.handleSetDeleteMode((event, deleteModeBool) => {
+  $("#myModal").modal("hide");
+  // set the delete mode to true or false
+  deleteMode = deleteModeBool;
+
+  let paintNote = false;
+
+  // check for notes
+  let htmlNotes = document.querySelectorAll(".note");
+  if (htmlNotes.length > 0) {
+    paintNote = true;
+  }
+
+  if (deleteMode) {
+    display.showAlert("Edit and Delete Mode!", "error");
+    el.body.style.backgroundColor = "#d3369c";
+    el.body.style.background = "linear-gradient(to right, #180808, #ff0000)";
+
+    switch (currentTheme) {
+      case "Dark":
+        el.blankCssLink.href = "assets/css/dark.css";
+        break;
+      case "Light":
+        el.blankCssLink.href = "assets/css/light.css";
+        break;
+      default:
+        console.log("No Match");
+    }
+  } else {
+    display.showAlert("Read and Write Mode!", "success");
+    switch (currentTheme) {
+      case "Dark":
+        el.body.style.background = "none";
+        el.body.style.backgroundColor = "black";
+        el.blankCssLink.href = "assets/css/dark.css";
+        break;
+      case "Light":
+        el.body.style.background = "none";
+        el.body.style.backgroundColor = "white";
+        el.blankCssLink.href = "assets/css/light.css";
+        break;
+      default:
+        console.log("No Match");
+    }
+  }
+
+  if (paintNote) {
+    renderNotes();
+  }
+});

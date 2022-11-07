@@ -27,6 +27,9 @@ contextBridge.exposeInMainWorld("api", {
   showImageDialog: () => {
     ipcRenderer.send("image:getFiles");
   },
+  handleSetDeleteMode: (callback) => {
+    ipcRenderer.on("deleteMode:set", callback);
+  },
   handleImagePath: (callback) =>
     ipcRenderer.on("imagePath:sendToRenderer", callback),
 });
