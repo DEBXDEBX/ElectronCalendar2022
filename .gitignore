@@ -1,3 +1,4 @@
 node_modules/*
 dist/*
 Calendar-win32-x64/*
+.vscode/*

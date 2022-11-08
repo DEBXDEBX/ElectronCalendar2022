@@ -48,6 +48,9 @@ h6 > span {
   font-weight: 900;
   color: var(--primary-color);
 }
+img {
+  border-radius: 20px;
+}
 nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -156,7 +159,7 @@ nav ul li:hover {
   border: 20px solid white;
   border-radius: 20px;
 }
-​ input[type="radio"] {
+​input[type="radio"] {
   margin: 10px;
   font-size: 16px;
 }
