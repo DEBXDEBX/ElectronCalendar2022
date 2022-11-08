@@ -25,6 +25,16 @@ h1 {
   color: var(--primary-color);
   text-align: center;
 }
+h3 {
+  text-align: center;
+  margin: 20 0 0 0;
+}
+h4 {
+  margin: 2px 0px 40px 2px;
+  background-color: #0f1313;
+  padding: 3px;
+  color: var(--primary-color);
+}
 h6 {
   margin: 10px;
   text-align: center;
@@ -32,6 +42,11 @@ h6 {
   border-radius: 15px;
   padding: 0.45rem;
   color: white;
+}
+
+h6 > span {
+  font-weight: 900;
+  color: var(--primary-color);
 }
 nav ul {
   display: flex;
@@ -58,6 +73,37 @@ nav ul li {
 nav ul li:hover {
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+.active {
+  color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 2px 4px white;
+  transform: scale(1.1);
+}
+#monthHeading,
+#settingsForm,
+#noteForm,
+#headingNote {
+  display: none;
+}
+#noteForm {
+  max-width: 97%;
+  margin: 0 auto;
+}
+.year:hover {
+  cursor: pointer;
+}
+.month:hover {
+  cursor: pointer;
+}
+.fas,
+.far {
+  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.fas:hover,
+.far:hover {
+  cursor: pointer;
+  transform: scale(1.3);
 }
 /* CODE FOR MESSAGES  */
 .success,
@@ -86,48 +132,23 @@ nav ul li:hover {
 }
 /* END CODE FOR MESSAGES  */
 
-.active {
-  color: white;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 2px 4px white;
-  transform: scale(1.1);
-}
-#monthHeading,
-#settingsForm,
-#noteForm,
-#headingNote {
-  display: none;
-}
-h6 > span {
-  font-weight: 900;
-  color: var(--primary-color);
-}
-
-/* .addSpace {
-  height: 1750px;
-} */
-
-#noteForm {
-  max-width: 97%;
-  margin: 0 auto;
-}
-.year:hover {
-  cursor: pointer;
-}
-.month:hover {
-  cursor: pointer;
-}
-.fas,
-.far {
-  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
-}
-.fas:hover,
-.far:hover {
-  cursor: pointer;
-  transform: scale(1.3);
-}
 /* settings form  */
-
+.setFlex {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: #aea9ad;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 22px;
+  box-shadow: 5px 4px 9px black;
+}
+@media screen and (max-width: 940px) {
+  .radio {
+    flex-direction: column;
+  }
+}
 #settingsForm {
   max-width: 70%;
   margin: 14px auto;
@@ -141,6 +162,9 @@ h6 > span {
 }
 input[type="radio"]:hover {
   cursor: pointer;
+}
+input[type="checkbox"] {
+  margin-left: 22px;
 }
 input[type="checkbox"]:hover {
   cursor: pointer;
@@ -168,34 +192,13 @@ input[type="checkbox"]:hover {
 .radio div {
   margin: 7px;
 }
-.setFlex {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  background-color: #aea9ad;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 22px;
-  box-shadow: 5px 4px 9px black;
-}
-@media screen and (max-width: 940px) {
-  .radio {
-    /* display: flex; */
-    flex-direction: column;
-  }
-}
+
 #yearHeading,
 #monthHeading,
 #headingNote {
   box-shadow: 5px 4px 9px black;
 }
-h4 {
-  margin: 2px 0px 40px 2px;
-  background-color: #0f1313;
-  padding: 3px;
-  color: var(--primary-color);
-}
+
 #noteList {
   margin: 10px auto;
   width: 98%;
@@ -246,10 +249,7 @@ h4 {
 .moveDown:hover {
   cursor: pointer;
 }
-h3 {
-  text-align: center;
-  margin: 20 0 0 0;
-}
+
 .trash {
   margin-left: 16px;
   color: black;
