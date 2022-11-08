@@ -79,7 +79,7 @@ nav ul li:hover {
 .active {
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 2px 4px white;
+  box-shadow: 5px 4px 9px black;
   transform: scale(1.1);
 }
 #monthHeading,
