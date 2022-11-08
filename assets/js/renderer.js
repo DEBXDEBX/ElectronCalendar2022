@@ -935,7 +935,7 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
   $("#myModal").modal("hide");
   // set the delete mode to true or false
   deleteMode = deleteModeBool;
-
+  sound.btnAudio.play();
   let paintNote = false;
 
   // check for notes
@@ -985,6 +985,7 @@ window.api.handleSetDeleteMode((event, deleteModeBool) => {
 window.api.handleSetTheme((event, theme) => {
   $("#myModal").modal("hide");
   // set te current theme
+  sound.btnAudio.play();
   currentTheme = theme;
   // check if delete mode is on, if so return
   if (deleteMode) {
